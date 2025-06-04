@@ -1,17 +1,17 @@
-// import { getData } from "@/actions/todoAction";
-// import { getAllUsers, getUser } from "@/actions/userAction";
-// import Todos from "@/components/todos";
+import Todos from "@/components/todos";
+import { getUser } from "@/actions/userAction";
+import { currentUser } from "@clerk/nextjs/server";
 
 export default async function Home() {
-  // const users = await getAllUsers();
-  // console.log(users)
-  // const data = await getData(users[0].id);
-
-  // const user = await getUser(users[0].id)
-  // console.log(user);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const user: any = await currentUser();
+  if(!user) return;
+  const fetchedData = await getUser(user?.id)
+  console.log(fetchedData);
+  
   return (
     <main>
-      {/* <Todos todos={data} user={users[0]} /> */}
+      <Todos todos={fetchedData[0].todos} user={fetchedData[0]} />
     </main>
   );
 }

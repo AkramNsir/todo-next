@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
       }
 
       await addUser(user);
-          return NextResponse.json({message: "New user created", user}, { status: 200 });
+      return NextResponse.json({message: "New user created", user}, { status: 200 });
     }
   } catch (err) {
     console.error("Error verifying webhook:", err);
