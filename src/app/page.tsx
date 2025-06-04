@@ -5,13 +5,15 @@ import { currentUser } from "@clerk/nextjs/server";
 export default async function Home() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user: any = await currentUser();
-  if(!user) return;
-  const fetchedData = await getUser(user?.id)
+  if (!user) return;
+  const fetchedData = await getUser(user?.id);
   console.log(fetchedData);
-  
+
   return (
-    <main>
-      <Todos todos={fetchedData[0].todos} user={fetchedData[0]} />
-    </main>
+    fetchedData && (
+      <main>
+        <Todos todos={fetchedData[0]?.todos || []} user={fetchedData[0]} />
+      </main>
+    )
   );
 }

@@ -9,11 +9,11 @@ import {
   editTodo,
   toggleTodo,
 } from "@/actions/todoAction";
-import { userType } from "@/types/userType";
 
 interface Props {
   todos: todoType[];
-  user: userType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  user: any;
 }
 
 const Todos: FC<Props> = ({ todos, user }) => {
@@ -21,7 +21,7 @@ const Todos: FC<Props> = ({ todos, user }) => {
   const [todoItems, setTodoItems] = useState<todoType[]>(todos);
 
   // Function to create a new todo item
-  const createTodo = (text: string) => {
+    const createTodo = (text: string) => {
     // addUser();
     const id = new Date().getTime();
     addTodo(id, text, user?.id);
