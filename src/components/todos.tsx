@@ -9,10 +9,11 @@ import {
   editTodo,
   toggleTodo,
 } from "@/actions/todoAction";
+import { userType } from "@/types/userType";
 
 interface Props {
   todos: todoType[];
-  user: any;
+  user: userType;
 }
 
 const Todos: FC<Props> = ({ todos, user }) => {
